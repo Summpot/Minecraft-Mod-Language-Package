@@ -41,7 +41,7 @@ jobs:
       - name: Publish to Github Release
         shell: pwsh
         run: |
-            Install-Module PSGitHub
+            Install-Module PSGitHub -Force
             $PSDefaultParameterValues['*GitHub*:Token'] = "${{ secrets.GITHUB_TOKEN }}" | ConvertTo-SecureString -AsPlainText -Force
             $splitName = "${{github.REPOSITORY}}" -split '/'
             $timeStamp = Get-Date -Format yyyyMMddHHmmss
