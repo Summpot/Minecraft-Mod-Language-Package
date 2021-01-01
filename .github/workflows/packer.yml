@@ -22,22 +22,32 @@ jobs:
       - name: Run Packer
         run: ./Packer
 
-      - name: Create timestamp
-        id: create_timestamp
-        run: echo "::set-output name=timestamp::$(date '+%Y%m%d%H%M%s')"
-        shell: sh
+      #- name: Create timestamp
+      #  id: create_timestamp
+      #  run: echo "::set-output name=timestamp::$(date '+%Y%m%d%H%M%s')"
+      #  shell: sh
 
-        # Create the release:  https://github.com/actions/create-release
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: Snapshot-${{ steps.create_timestamp.outputs.timestamp }}
-          release_name: 汉化资源包-Snapshot-${{ steps.create_timestamp.outputs.timestamp }}
-          draft: false
-          prerelease: false
+      #- name: Create release
+      #  id: create_release
+      #  uses: actions/create-release@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    tag_name: Snapshot-${{ steps.create_timestamp.outputs.timestamp }}
+      #    release_name: 汉化资源包-Snapshot-${{ steps.create_timestamp.outputs.timestamp }}
+      #    draft: false
+      #    prerelease: false
+
+      - name: Publish to Github Release
+        shell: pwsh
+        run: |
+            Install-Module PSGitHub
+            $PSDefaultParameterValues['*GitHub*:Token'] = '${{ secrets.GITHUB_TOKEN }}' | ConvertTo-SecureString
+            $splitName = ${{github.REPOSITORY}} -split '/'
+            $timeStamp = Get-Date -Format yyyyMMddHHmmss
+            $release = New-GitHubRelease -Owner $splitName[0] -RepositoryName $splitName[1] -TagName  "Snapshot-$timeStamp" -Name "汉化资源包-Snapshot-$timeStamp"
+            Write-output $release
+        
 
       # Upload release asset:   https://github.com/actions/upload-release-asset
       - name: Update release asset
