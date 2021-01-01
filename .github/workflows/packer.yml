@@ -45,7 +45,7 @@ jobs:
             $PSDefaultParameterValues['*GitHub*:Token'] = "${{ secrets.GITHUB_TOKEN }}" | ConvertTo-SecureString -AsPlainText -Force
             $splitName = "${{github.REPOSITORY}}" -split '/'
             $timeStamp = Get-Date -Format yyyyMMddHHmmss
-            $release = New-GitHubRelease -Owner $splitName[0] -RepositoryName $splitName[1] -TagName  "Snapshot-$timeStamp" -Name "汉化资源包-Snapshot-$timeStamp"
+            $release = New-GitHubRelease -Owner $splitName[0] -RepositoryName $splitName[1] -TagName  "Snapshot-$timeStamp" -Name "`u{6c49}`u{5316}`u{8d44}`u{6e90}`u{5305}-Snapshot-$timeStamp"
             Write-output $release
         
 
