@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formatter", "..\src\Formatt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packer-old", "..\src\Packer-old\Packer-old.csproj", "{854A69C9-BCF9-41DF-97DD-7661573DECBE}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Packer", "..\src\Packer\Packer.fsproj", "{EF927C8D-B540-4C98-B5CC-5CD8FD803704}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Packer", "..\src\Packer\Packer.fsproj", "{EF927C8D-B540-4C98-B5CC-5CD8FD803704}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6A8918C-D73F-4A35-8D37-C574684C6427}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\packer.yml = ..\.github\workflows\packer.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
