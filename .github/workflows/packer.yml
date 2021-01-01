@@ -1,6 +1,7 @@
 name: Packer
 # cloned from main branch, merely edited
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     #paths:
@@ -16,7 +17,7 @@ jobs:
           ref: main
 
       - name: Build Packer
-        run: dotnet publish .\src\Packer\Packer.csproj -o ./ -r win-x64 -p:PublishSingleFile=true
+        run: dotnet publish .\src\Packer\Packer.fsproj -o ./ -r win-x64 -p:PublishSingleFile=true
 
       - name: Run Packer
         run: ./Packer
